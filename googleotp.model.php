@@ -28,6 +28,7 @@ class googleotpModel extends googleotp
 		$cond->number = $number;
 		$cond->issue_type = $issue_type;
 		$cond->issuccess = $issuccess;
+		$cond->ipaddress = \RX_CLIENT_IP;
 		$cond->time = time();
 		$output = executeQuery('googleotp.insertGoogleotpauthlog', $cond);
 		return $output;

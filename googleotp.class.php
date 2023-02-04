@@ -289,6 +289,9 @@ class googleotp extends ModuleObject
 	 */
 	public function checkUpdate()
 	{
+		$oDB = DB::getInstance();
+		if(!$oDB->isColumnExists("googleotp_authlog","ipaddress")) return true;
+
 		return $this->checkTriggers();
 	}
 
@@ -301,6 +304,12 @@ class googleotp extends ModuleObject
 	 */
 	public function moduleUpdate()
 	{
+		$oDB = DB::getInstance();
+		if(!$oDB->isColumnExists("googleotp_authlog","ipaddress"))
+		{
+			$oDB->addColumn('googleotp_authlog',"ipaddress","varchar",128,"",false,"issuccess");
+		}
+
 		return $this->registerTriggers();
 	}
 
