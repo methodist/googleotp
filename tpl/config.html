@@ -75,8 +75,8 @@
 			<label class="x_control-label">자동 로그인시 OTP 재인증</label>
 			<div class="x_controls">
 				{@ $is_over_20100 = version_compare(__XE_VERSION__, '2.1.0', '>='); }
-				<label class="x_inline" for="autologin_reauth"><input type="checkbox" name="autologin_reauth" id="autologin_reauth" value="Y" checked="checked"|cond="$googleotp_config->autologin_reauth == 'Y'" onClick="return false;"|cond="!$is_over_20100" /> 자동 로그인시에도 OTP를 인증합니다.</label>
-				<p class="x_help-block">자동 로그인 이후에 OTP 재인증을 거칠지 여부입니다.<!--@if(!$is_over_20100)--> 라이믹스 2.1.0 이상에서만 비활성화 할 수 있습니다.<!--@endif--></p>
+				<label class="x_inline" for="autologin_reauth"><input type="checkbox" name="autologin_reauth" id="autologin_reauth" value="Y" checked="checked"|cond="$googleotp_config->autologin_reauth == 'Y'" onClick="return false;"|cond="!$is_over_20100" />&nbsp;자동 로그인시에도 OTP를 인증을 요구합니다.</label>
+				<p class="x_help-block">자동 로그인 이후에 OTP 재인증을 거칠지 여부입니다. 사이트 이용중에 불시적으로 OTP 인증을 요구하는 경우 이 옵션을 꺼주세요.<!--@if(!$is_over_20100)--><br><span style="color:blueviolet">※ 라이믹스 2.1.0 이상에서만 비활성화 할 수 있습니다.</span><!--@endif--></p>
 			</div>
 		</div>
 	</section>
