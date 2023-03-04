@@ -170,4 +170,17 @@ class googleotpController extends googleotp
 			}
 		}
 	}
+
+	public function triggerAfterDoAutoLogin($obj)
+	{
+		$config = $this->getConfig();
+		if ($config->autologin_reauth == 'N') return;
+
+		$member_srl = $obj->member_srl;
+		$oGoogleOTPModel = googleotpModel::getInstance();
+		$userconfig = $oGoogleOTPModel->getUserConfig($member_srl);
+		if($userconfig->use != "Y") return;
+
+		$_SESSION['googleotp_passed'] = true;
+	}
 }

@@ -20,6 +20,7 @@ class googleotpAdminController extends googleotp
 		$config->use_captcha = $vars->use_captcha ? 'Y' : 'N';
 		$config->auth_key_vaild_hour = $vars->auth_key_vaild_hour;
 		$config->multiple_auth_key_process = $vars->multiple_auth_key_process;
+		$config->autologin_reauth = $vars->autologin_reauth ? 'Y' : 'N';
 		
 		$output = $this->setConfig($config);
 		if (!$output->toBool())

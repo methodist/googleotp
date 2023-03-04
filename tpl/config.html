@@ -70,6 +70,15 @@
 				<p class="x_help-block"><a href="{getUrl('', 'module', 'admin', 'act', 'dispSpamfilterAdminConfigCaptcha')}" target="_blank">스팸필터 모듈에 설정한 캡챠 데이터</a>를 사용하여 OTP 인증시 캡챠를 사용합니다. 라이믹스 전용 기능입니다.</p>
 			</div>
 		</div>
+
+		<div class="x_control-group">
+			<label class="x_control-label">자동 로그인시 OTP 재인증</label>
+			<div class="x_controls">
+				{@ $is_over_20100 = version_compare(__XE_VERSION__, '2.1.0', '>='); }
+				<label class="x_inline" for="autologin_reauth"><input type="checkbox" name="autologin_reauth" id="autologin_reauth" value="Y" checked="checked"|cond="$googleotp_config->autologin_reauth == 'Y'" onClick="return false;"|cond="!$is_over_20100" /> 자동 로그인시에도 OTP를 인증합니다.</label>
+				<p class="x_help-block">자동 로그인 이후에 OTP 재인증을 거칠지 여부입니다.<!--@if(!$is_over_20100)--> 라이믹스 2.1.0 이상에서만 비활성화 할 수 있습니다.<!--@endif--></p>
+			</div>
+		</div>
 	</section>
 
 	<section class="section">

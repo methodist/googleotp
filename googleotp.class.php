@@ -8,6 +8,7 @@ class googleotp extends ModuleObject
 	protected static $_insert_triggers = array(
 		array('moduleHandler.init', 'before', 'controller', 'triggerHijackLogin'),
 		array('moduleHandler.init', 'after', 'controller', 'triggerAddMemberMenu'),
+		array('member.doAutoLogin', 'after', 'controller', 'triggerAfterDoAutoLogin'),
 	);
 
 	/**
@@ -53,6 +54,7 @@ class googleotp extends ModuleObject
 			if(!isset(self::$_config_cache->use_captcha)) self::$_config_cache->use_captcha = 'N';
 			if(!isset(self::$_config_cache->auth_key_vaild_hour)) self::$_config_cache->auth_key_vaild_hour = 3;
 			if(!isset(self::$_config_cache->multiple_auth_key_process)) self::$_config_cache->multiple_auth_key_process = 0;
+			if(!isset(self::$_config_cache->autologin_reauth)) self::$_config_cache->autologin_reauth = 'Y';
 		}
 		return self::$_config_cache;
 	}
