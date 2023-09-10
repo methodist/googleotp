@@ -13,6 +13,17 @@
         <input type="hidden" name="member_srl" value="{$member_srl}">
         <section class="section">
             <h1>로그인 2차 인증 설정</h1>
+            <!--@if($member_srl != $this->user->member_srl && $this->user->is_admin === 'Y')-->
+            {@
+                $target_member_info = MemberModel::getMemberInfoByMemberSrl($member_srl);
+            }
+            <div class="control-group">
+                <label class="control-label">대상 유저</label>
+                <div class="controls">
+                    {$target_member_info->nick_name} ({$target_member_info->member_srl})
+                </div>
+            </div>
+            <!--@endif-->
             <div class="control-group">
                 <label class="control-label">로그인시 2차 인증 사용하기</label>
                 <div class="controls">
