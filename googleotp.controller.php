@@ -29,6 +29,19 @@ class googleotpController extends googleotp
 			return $this->createObject(-1, "2차 인증 방식을 선택해주세요.");
 		}
 
+		if ($cond->use == 'Y' && $cond->issue_type == 'otp') {
+			if (!Context::get('code')) {
+				return $this->createObject(-1, "OTP 인증번호를 입력해주세요.");
+			}
+			
+			$user_config = $oGoogleOTPModel->getUserConfig($member_srl);
+			$ga = new PHPGangsta_GoogleAuthenticator();
+			if (!$ga->verifyCode($user_config->otp_id, Context::get('code'), 2))
+			{
+				return $this->createObject(-1, "잘못된 OTP 인증번호입니다.");
+			}
+		}
+
 		$output = executeQuery('googleotp.updateGoogleotpuserconfigbySrl', $cond);
 		if(!$output->toBool()) return $this->createObject(-1, "ERROR #1 : 관리자에게 문의하세요.");
 
