@@ -24,20 +24,17 @@
         <input type="hidden" name="error_return_url" value="{getRequestUriByServerEnviroment()}" />
         <input type="hidden" name="member_srl" value="{$member_srl}">
         <section class="section">
-            <h1>로그인 2차 인증</h1>
-            <div class="control-group">
-                <label class="control-label">인증 번호 입력</label>
-                <div class="controls">
-                    <input type="text" name="otpinput" required />
-                    <!--@if($user_config->issue_type == 'otp')-->
-                    <p class="help-block">Google OTP 앱에 뜬 번호를 입력해주세요.</p>
-                    <!--@elseif($user_config->issue_type == 'email')-->
-                    <p class="help-block">이메일로 발송된 인증 번호를 입력해주세요.</p>
-                    <!--@elseif($user_config->issue_type == 'sms')-->
-                    <p class="help-block">문자로 발송된 인증 번호를 입력해주세요.</p>
-                    <!--@endif-->
-                </div>
-            </div>
+            <h3>로그인 2차 인증</h3>
+            <br>
+                <input type="text" name="otpinput" inputmode="numeric" autocomplete="one-time-code" required />
+                <!--@if($user_config->issue_type == 'otp')-->
+                <p class="help-block">OTP 앱으로 생성된 코드를 입력해주세요.</p>
+                <!--@elseif($user_config->issue_type == 'email')-->
+                <p class="help-block">이메일로 발송된 코드를 입력해주세요.</p>
+                <!--@elseif($user_config->issue_type == 'sms')-->
+                <p class="help-block">SMS로 발송된된 코드를 입력해주세요.</p>
+                <!--@endif-->
+        
             <!--@if(in_array($user_config->issue_type, ['email','sms']))-->
             <div class="control-group">
                 <label class="control-label">인증 <!--@if($user_config->issue_type == 'email')-->메일<!--@elseif($user_config->issue_type == 'sms')-->문자<!--@endif--> 재전송</label>
